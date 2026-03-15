@@ -30,7 +30,7 @@ else:
 
 
 ALLOWED_HOSTS = [
-    '194.156.118.252',
+    '85.198.98.114',
     'tutorvic.ru',
     'www.tutorvic.ru',
     '127.0.0.1',
