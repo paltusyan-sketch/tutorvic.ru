@@ -1,10 +1,11 @@
 from django.shortcuts import render
-from .models import Subjects
+from .models import Subjects, Settings
 
 # Create your views here.
 
 def format_price(price):
     price = str(price)                                                      # Приводим в удобный вид.
+    orig_price = price
     price = price.replace(" ","")
     price = price.replace(",","")
     price = price.replace(".","")
@@ -24,7 +25,7 @@ def format_price(price):
             price = price[0:positions_of_commas[0]+1] + "," + price[positions_of_commas[0]+1:]
             del positions_of_commas[0]
     # print("₽" + price)
-    return "₽" + price
+    return orig_price + "₽"
 
 
 
@@ -54,6 +55,10 @@ def index_page(request):
     physics_discount_percent = Subjects.objects.get(id=2).discount_percent
     info_discount_percent = Subjects.objects.get(id=1).discount_percent
 
+    math_first_lesson_cost = Subjects.objects.get(id=3).first_lesson_cost
+    physics_first_lesson_cost = Subjects.objects.get(id=2).first_lesson_cost
+    info_first_lesson_cost = Subjects.objects.get(id=1).first_lesson_cost
+
 
     context = {
         "math_name" : math_name,
@@ -79,7 +84,12 @@ def index_page(request):
         "math_discount_percent" : math_discount_percent,
         "physics_discount_percent" : physics_discount_percent,
         "info_discount_percent" : info_discount_percent,
+
+        "math_first_lesson_cost" : math_first_lesson_cost,
+        "physics_first_lesson_cost" : physics_first_lesson_cost,
+        "info_first_lesson_cost" : info_first_lesson_cost,
     }
+            
     return render(request, "index.html", context)
 
 

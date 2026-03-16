@@ -40,18 +40,21 @@
           <i class="fas fa-graduation-cap"></i>
           <span>TutorVic</span>
         </a>
-
+        
         <div class="header__mobile-actions d-lg-none">
+          {% if site_settings.mb_button_text %}
           <button data-subject="common" class="btn btn-primary header__btn header__btn--mobile">
-            Пробное занятие
-            <img src="{% static 'img/icons/free-white.png' %}" class="free-badge" alt="FREE">
+            {{ site_settings.mb_button_text|safe }}
+            {% if site_settings.is_free %}<img src="{% static 'img/icons/free-white.png' %}" class="free-badge" alt="FREE">{% endif %}
+            {% if site_settings.cost_first %}<div class="cost-badge">{{ site_settings.cost_first|safe }}</div>{% endif %}
           </button>
+          {% endif %}
           <button class="navbar-toggler header__toggle" type="button" data-bs-toggle="collapse"
             data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
           </button>
         </div>
-
+        
         <div class="collapse navbar-collapse header__nav" id="navbarNav">
           <ul class="navbar-nav me-auto header__menu">
             <li class="nav-item">
@@ -64,7 +67,7 @@
               <a class="nav-link header__link" href="#instructors">Преподаватели</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link header__link" href="#about">О нас</a>
+              <a class="nav-link header__link" href="#about">О&nbsp;нас</a>
             </li>
             <li class="nav-item">
               <a class="nav-link header__link" href="#testimonials">Отзывы</a>
@@ -75,10 +78,13 @@
           </ul>
 
           <div class="header__actions">
+            {% if site_settings.pk_button_text %}
             <button data-subject="common" class="btn btn-primary header__btn">
-              Пробное занятие - бесплатно
-              <img src="{% static 'img/icons/free-white.png' %}" class="free-badge" alt="FREE">
+              {{ site_settings.pk_button_text|safe }}
+              {% if site_settings.is_free %}<img src="{% static 'img/icons/free-white.png' %}" class="free-badge" alt="FREE">{% endif %}
+              {% if site_settings.cost_first %}<div class="cost-badge">{{ site_settings.cost_first|safe }}</div>{% endif %}
             </button>
+            {% endif %}
           </div>
         </div>
       </div>
@@ -225,9 +231,9 @@
               <div class="course-card__badge">Популярный</div>
             </div>
             <div class="course-card__content">
-              <h3 class="course-card__title">{{ math_name }}</h3>
+              <h3 class="course-card__title">{{ math_name|safe }}</h3>
               <p class="course-card__description">Подготовка к ЕГЭ и ОГЭ по математике.<br>Индивидуальный
-                подход.<br>Пробное занятие-консультация - <span class="free_lesson_marker">бесплатно!</span></p>
+                подход.<br>Пробное занятие-консультация - {% if math_first_lesson_cost %}<span class="free_lesson_marker">{{ math_first_lesson_cost|safe }}₽</span>{% else %}<span class="free_lesson_marker">бесплатно!</span>{% endif %}</p>
               <div class="course-card__meta">
                 <div class="course-card__rating">
                   <i class="fas fa-star"></i>
@@ -243,19 +249,19 @@
                 <div class="pricing-section">
                   <div class="pricing-row">
                     <div class="price-per-lesson">
-                      <span class="price-amount">{{ math_cost }}</span>
+                      <span class="price-amount">{{ math_cost|safe }}</span>
                       <span class="price-unit">за урок (1 час)</span>
                     </div>
                     <button class="btn btn-primary course-card__btn" data-subject="math">Записаться</button>
                   </div>
                   <div class="pricing-row">
                     <div class="price-package">
-                      <span class="price-package__new">{{ math_opt_cost }}</span>
-                      <span class="price-package__label">за {{ math_package_size }} уроков</span>
+                      <span class="price-package__new">{{ math_opt_cost|safe }}</span>
+                      <span class="price-package__label">за {{ math_package_size|safe}} уроков</span>
                     </div>
                     <div class="savings-info">
-                      <span class="price-package__old">{{ math_opt_cost_without_discount }}</span>
-                      <span class="savings-text">экономия {{ math_discount_percent }}%</span>
+                      <span class="price-package__old">{{ math_opt_cost_without_discount|safe }}</span>
+                      <span class="savings-text">экономия {{ math_discount_percent|safe }}%</span>
                     </div>
                   </div>
                 </div>
@@ -271,9 +277,9 @@
               <div class="course-card__badge course-card__badge--new">Новый</div>
             </div>
             <div class="course-card__content">
-              <h3 class="course-card__title">{{ physics_name }}</h3>
+              <h3 class="course-card__title">{{ physics_name|safe }}</h3>
               <p class="course-card__description">Подготовка к ЕГЭ и ОГЭ по физике.<br>Индивидуальный подход.<br>Пробное
-                занятие-консультация - <span class="free_lesson_marker">бесплатно!</span></p>
+                занятие-консультация - {% if physics_first_lesson_cost %}<span class="free_lesson_marker">{{ physics_first_lesson_cost|safe }}₽</span>{% else %}<span class="free_lesson_marker">бесплатно!</span>{% endif %}</p>
               <div class="course-card__meta">
                 <div class="course-card__rating">
                   <i class="fas fa-star"></i>
@@ -289,19 +295,19 @@
                 <div class="pricing-section">
                   <div class="pricing-row">
                     <div class="price-per-lesson">
-                      <span class="price-amount">{{ physics_cost }}</span>
+                      <span class="price-amount">{{ physics_cost|safe }}</span>
                       <span class="price-unit">за урок (1 час)</span>
                     </div>
                     <button class="btn btn-primary course-card__btn" data-subject="physics">Записаться</button>
                   </div>
                   <div class="pricing-row">
                     <div class="price-package">
-                      <span class="price-package__new">{{ physics_opt_cost }}</span>
-                      <span class="price-package__label">за {{ physics_package_size }} уроков</span>
+                      <span class="price-package__new">{{ physics_opt_cost|safe }}</span>
+                      <span class="price-package__label">за {{ physics_package_size|safe }} уроков</span>
                     </div>
                     <div class="savings-info">
-                      <span class="price-package__old">{{ physics_opt_cost_without_discount }}</span>
-                      <span class="savings-text">экономия {{ physics_discount_percent }}%</span>
+                      <span class="price-package__old">{{ physics_opt_cost_without_discount|safe }}</span>
+                      <span class="savings-text">экономия {{ physics_discount_percent|safe }}%</span>
                     </div>
                   </div>
                 </div>
@@ -317,9 +323,9 @@
               <div class="course-card__badge">Популярный</div>
             </div>
             <div class="course-card__content">
-              <h3 class="course-card__title">{{ info_name }}</h3>
+              <h3 class="course-card__title">{{ info_name|safe }}</h3>
               <p class="course-card__description">Подготовка к ЕГЭ и ОГЭ по информатике.<br>Индивидуальный
-                подход.<br>Пробное занятие-консультация - <span class="free_lesson_marker">бесплатно!</span></p>
+                подход.<br>Пробное занятие-консультация - {% if info_first_lesson_cost %}<span class="free_lesson_marker">{{ info_first_lesson_cost|safe }}₽</span>{% else %}<span class="free_lesson_marker">бесплатно!</span>{% endif %}</p>
               <div class="course-card__meta">
                 <div class="course-card__meta">
                   <div class="course-card__rating">
@@ -336,19 +342,19 @@
                   <div class="pricing-section">
                     <div class="pricing-row">
                       <div class="price-per-lesson">
-                        <span class="price-amount">{{ info_cost }}</span>
+                        <span class="price-amount">{{ info_cost|safe }}</span>
                         <span class="price-unit">за урок (1 час)</span>
                       </div>
                       <button class="btn btn-primary course-card__btn" data-subject="informatics">Записаться</button>
                     </div>
                     <div class="pricing-row">
                       <div class="price-package">
-                        <span class="price-package__new">{{ info_opt_cost }}</span>
-                        <span class="price-package__label">за {{ info_package_size }} уроков</span>
+                        <span class="price-package__new">{{ info_opt_cost|safe }}</span>
+                        <span class="price-package__label">за {{ info_package_size|safe }} уроков</span>
                       </div>
                       <div class="savings-info">
-                        <span class="price-package__old">{{ info_opt_cost_without_discount }}</span>
-                        <span class="savings-text">экономия {{ info_discount_percent }}%</span>
+                        <span class="price-package__old">{{ info_opt_cost_without_discount|safe }}</span>
+                        <span class="savings-text">экономия {{ info_discount_percent|safe }}%</span>
                       </div>
                     </div>
                   </div>
@@ -381,7 +387,7 @@
           <div class="instructor-card__content">
             <div class="instructor-card__top">
               <div class="instructor-card__image">
-                <img src="{% static 'img/instructors/Vitaly3_shared.jpg' %}" alt="Виталий" class="img-fluid">
+                <img src="{% static 'img/instructors/Vitaly_near_desk.jpg' %}" alt="Виталий" class="img-fluid">
               </div>
               <h3 class="instructor-card__name">Виталий</h3>
               <p class="instructor-card__title">Математика</p>
@@ -1160,11 +1166,11 @@
             <div class="footer__contact">
               <div class="footer__contact-item">
                 <i class="fas fa-map-marker-alt"></i>
-                <span>Екатеринбург, ул. Спортивная, 7 </span>
+                {% if site_settings.address_1 %}<span>{{ site_settings.address_1|safe }}</span>{% endif %}
               </div>
               <div class="footer__contact-item">
                 <i class="fas fa-map-marker-alt"></i>
-                <span>Сочи, ул. Бзугу, 6</span>
+                {% if site_settings.address_2 %}<span>{{ site_settings.address_2|safe }}</span>{% endif %}
               </div>
               <div class="footer__contact-item">
                 <i class="fas fa-phone"></i>

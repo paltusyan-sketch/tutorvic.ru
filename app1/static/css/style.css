@@ -109,7 +109,7 @@ a {
 }
 
 .header__menu {
-  gap: 32px;
+  gap: 23px;
 }
 
 .header__link {
@@ -1765,6 +1765,26 @@ a {
   box-shadow: var(--shadow-md);
 }
 
+.cost-badge {
+  position: absolute;
+  bottom: -15%;
+  right: -4%;
+  width: 81px;
+  height: 55px;
+  transform: translate(25%, 25%) rotate(-19deg);
+  background-image: url('../img/icons/cost.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 5px;
+  padding-right: 6px;
+  /* background-color: #dc3545; */
+}
+
 /* ===== MOBILE MENU STYLES ===== */
 @media (max-width: 991px) {
   .header__nav {
@@ -1849,6 +1869,11 @@ a {
   .header__toggle.active .navbar-toggler-icon::after {
     transform: rotate(-45deg) !important;
     top: 0 !important;
+  }
+
+  .cost-badge {
+    height: 43px;
+    transform: translate(35%, 29%) rotate(-14deg);
   }
 }
 
@@ -2262,3 +2287,17 @@ textarea.form-input {
   height: auto;
   transform: translate(25%, 25%) rotate(-19deg);
 }
+
+
+
+@media (max-width: 370px) {
+    body .header__btn--mobile {
+      font-size: 12px;
+    }
+  }
+
+@media (max-width: 340px) {
+    body .header__btn--mobile {
+      font-size: 8px;
+    }
+  }
