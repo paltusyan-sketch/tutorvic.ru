@@ -93,7 +93,7 @@
 
   .hero {
     text-align: center;
-    padding: 60px 0;
+    padding: 0px 0;
   }
 
   .row.align-items-center.min-vh-100 {
@@ -351,7 +351,7 @@
   }
 
   .hero {
-    padding: 40px 0;
+    padding: 0px 0;
     min-height: auto;
   }
 
@@ -1298,7 +1298,7 @@
 @media (max-height: 500px) and (orientation: landscape) {
   .hero {
     min-height: auto;
-    padding: 40px 0;
+    padding: 0px 0;
   }
 
   .hero__title {

@@ -1792,7 +1792,7 @@ a {
     top: 100%;
     left: 0;
     right: 0;
-    background-color: white;
+    background-color: #feffbf;
     box-shadow: var(--shadow-lg);
     transform: translateY(-100%);
     opacity: 0;
@@ -2269,7 +2269,7 @@ textarea.form-input {
 
 
 .row.align-items-center.min-vh-100 {
-  margin-top: 0;
+  margin-top: -80px;
   padding-top: 0px;
 }
 
